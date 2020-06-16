@@ -31,20 +31,23 @@ print("Hello %s, your weight is %.2f kilograms, your height is %.2f metres, your
 
 
 #Need a reference table here to add the bmi status into dataframe
-if bmi < 18.5:
-    print("Underweight BMI")
-elif bmi < 24.5:
-    print("Healthy weight")
-elif bmi < 29.9:
-    print("Overweight")
-elif bmi < 250:
-    print("Obese")
-else:
-    print("This does not look like a BMI")
+def bmi_status(bmi):
+    if bmi < 18.5:
+        return "Underweight BMI"
+    elif 18.501 <= bmi < 24.5:
+        return "Healthy weight"
+    elif 24.501 <= bmi < 29.9:
+        return "Overweight"
+    elif 29.901 <= bmi < 250:
+        return "Obese"
+    else:
+        raise ValueError('Unsupported bmi: {}'.format(bmi))
+
+print(bmi_status(bmi))
 
 #Save results to a dataframe
-df = pd.DataFrame(columns=['Name','Weight','Height','BMI'])
-df1 = pd.DataFrame(data=[[name,weight,height,bmi]],columns=["Name","Weight","Height","BMI"])
+df = pd.DataFrame(columns=['Name','Weight','Height','BMI','BMI Status'])
+df1 = pd.DataFrame(data=[[name,weight,height,bmi,bmi_status(bmi)]],columns=["Name","Weight","Height","BMI","BMI Status"])
 df=pd.concat([df,df1],axis=0)
 
 print(df)

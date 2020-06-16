@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/BMI_Calculator.iml" filepath="$PROJECT_DIR$/.idea/BMI_Calculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../LearnPythonBeginners/.idea/LearnPythonBeginners.iml" filepath="$PROJECT_DIR$/../LearnPythonBeginners/.idea/LearnPythonBeginners.iml" />
     </modules>
   </component>
 </project>
