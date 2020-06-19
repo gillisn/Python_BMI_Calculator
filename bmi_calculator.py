@@ -9,27 +9,14 @@ weight = ()
 units = ()
 bmi = ()
 bmi_status = ()
-
+'''
 
 #Get user inputs
 name = input("Enter your name: ")
 height = float(input("Enter your height: "))/100
 weight = float(input("Enter your weight: "))
 #units =
-
-#Depending on units open an if statement, metric down one rabbit hole
-
-#Calculate your BMI on Metric.  BMI = weight in kgs/(height in metres * height in metres)
-def bmiMetric(height,weight):
-    bmi = weight/(height*height)
-    return(bmi)
-
-bmi = bmiMetric(height,weight)
-print(bmi)
-
-print("Hello %s, your weight is %.2f kilograms, your height is %.2f metres, your BMI is %.2f" % (name,weight,height,bmi))
-
-
+'''
 #Need a reference table here to add the bmi status into dataframe
 def bmi_status(bmi):
     if bmi < 18.5:
@@ -41,10 +28,51 @@ def bmi_status(bmi):
     elif 29.901 <= bmi < 250:
         return "Obese"
     else:
-        raise ValueError('Unsupported bmi: {}'.format(bmi))
+        raise ValueError('Unsupported BMI: {}'.format(bmi))
 
-print(bmi_status(bmi))
 
+#Depending on units open an if statement, metric down one rabbit hole
+def BMI(name,units,weight,height):
+    name = input("Please type your name: ")
+    units = input("Please type units - METRIC or IMPERIAL? ").upper()
+    weight = float(input("weight: "))
+    height = float(input("height: "))
+
+    if units == "METRIC":
+        bmi = weight / (height * height)
+        return bmi
+
+    elif units == "IMPERIAL":
+        bmi = (weight * 703) / (height * height)
+        return bmi
+    else:
+        print("Did you spell it correctly?")
+
+
+bmi_status(bmi)
+print("Hello %s, your BMI is %.2f" % (name,bmi))
+'''
+print("Hello %s, your weight is %.2f kilograms, your height is %.2f metres, your BMI is %.2f" % (name,weight,height,bmi))
+
+#Calculate your BMI on Metric.  BMI = weight in kgs/(height in metres * height in metres)
+def bmiMetric(height,weight):
+    bmi = weight/(height*height)
+    return(bmi)
+
+bmi = bmiMetric(height,weight)
+print(bmi)
+
+#Convert values for Imperial to pounds and inches
+height_inches = (feet*12)+inches
+weight_pounds = (stone*14)+pounds
+
+#Calculate your BMI on Imperial.  BMI = weight in pounds/(height in inches*height in inches)*703
+print("Hello %s, your weight is %.2f kilograms, your height is %.2f metres, your BMI is %.2f" % (name,weight,height,bmi))
+def bmiImperial(height,weight):
+    bmi=weight/(height*height)*703
+    return(bmi)
+'''
+'''
 #Save results to a dataframe
 df = pd.DataFrame(columns=['Name','Weight','Height','BMI','BMI Status'])
 df1 = pd.DataFrame(data=[[name,weight,height,bmi,bmi_status(bmi)]],columns=["Name","Weight","Height","BMI","BMI Status"])
@@ -57,7 +85,7 @@ df.to_csv('filename.csv',sep='\t')
 
 '''
 
-#Enter your Name
+'''#Enter your Name
 print("Welcome to this BMI Calculator.")
 name = input("Please enter your name: ")
 print(name)
