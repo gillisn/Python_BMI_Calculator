@@ -1,8 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import locale
-
-from
+from bmi import Bmi
 
 class BmiInterfaces(ttk.Frame):
     def __init__(self,parent):
@@ -12,7 +11,7 @@ class BmiInterfaces(ttk.Frame):
         BmiInterface(parent).grid(row=0,column=0)
 
         #Add the Calculate button
-        ttk.(parent,text="Calculate",command=parent.destroy).grid(row=1,column=1,sticky=tk.E,padx=15,pady=10)
+        ttk.Button(parent,text="Calculate",command=parent.destroy).grid(row=1,column=1,sticky=tk.E,padx=15,pady=10)
 
 class BmiInterface(ttk.Frame):
     def __init__(self,parent):
@@ -79,7 +78,7 @@ class BmiInterface(ttk.Frame):
         self.kgs.set("")
         self.cms.set("")
 
-if __name__ = " main ":
+if __name__ == " main ":
     root = tk.Tk
     root.title("BMI Calculator")
     BmiInterfaces(root)
