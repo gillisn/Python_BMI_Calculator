@@ -1,3 +1,12 @@
+#Name: Naoimi Gillis
+#Email: gillisnaoimi5@gmail.com
+#Phone: 0857227932
+#Attempt 1
+
+from sys import argv
+import csv
+import pandas as pd
+
 class BmiProperty:
 
     def __init__(self,stone=0.1,pounds=0.1,feet=0.1,inches=0.1,kgs=0.1,cms=0.1):
@@ -87,37 +96,56 @@ class BmiProperty:
         print("Your BMI Imperial inputs are: "" %.2d:%.2d%.2d:%.2d" % (self.stone,self.pounds,self.feet,self.inches))
 
     def metric_bmi(self):
-        bmi_metric=""
-        bmi_metric = self.kgs/(self.cms * self.cms)*10000
-        return bmi_metric
+        bmi=""
+        bmi = self.kgs/(self.cms * self.cms)*10000
+        return bmi
 
     def imperial_bmi(self):
-        bmi_imperial=""
-        bmi_imperial = (((self.stone*14)+self.pounds)*703) / (((self.feet*12)+self.inches)**2)
-        return bmi_imperial
-'''
-    goagain=True
+        bmi=""
+        bmi = (((self.stone*14)+self.pounds)*703) / (((self.feet*12)+self.inches)**2)
+        return bmi
 
+    # Need a reference table here to add the bmi status into dataframe
+    def bmi_status(bmi):
+        if bmi < 18.5:
+            return "Underweight BMI"
+        elif 18.501 <= bmi < 24.5:
+            return "Healthy weight"
+        elif 24.501 <= bmi < 29.9:
+            return "Overweight"
+        elif 29.901 <= bmi < 250:
+            return "Obese"
+        else:
+            raise ValueError('Unsupported BMI: {}'.format(bmi))
+
+    # Save results to a dataframe
+    df = pd.DataFrame(columns=['Stone','Pounds','Feet','Inches','Kgs','Cms','BMI','BMI Status'])
+    df1 = pd.DataFrame(data=[[stone,pounds,feet,inches,kgs,cms,bmi,bmi_status(bmi)]],
+                       columns=['Stone','Pounds','Feet','Inches','Kgs','Cms',"BMI","BMI Status"])
+    df = pd.concat([df, df1], axis=0)
+    print(df)
+
+    # Save results to a csv
+    df.to_csv('filename.csv', sep='\t')
+
+    goagain=True
     while(goagain==True):
         try:
-            stone = int(input("Enter your weight in stone: "))
-            pounds = int(input("Enter your pounds of weight(no more than 14 pounds in a stone): "))
-            feet = int(input("Enter your height in feet: "))
-            inches = int(input("Enter your inches of height(no more than 12 inches in a foot): "))
+            #stone = int(input("Enter your weight in stone: "))
+            #pounds = int(input("Enter your pounds of weight(no more than 14 pounds in a stone): "))
+            #feet = int(input("Enter your height in feet: "))
+            #inches = int(input("Enter your inches of height(no more than 12 inches in a foot): "))
             kgs = float(input("Enter your weight in kgs: "))
             cms = float(input("Enter your height in cms: "))
             metric_check=kgs/cms
             print("%f/%f=%f"%(kgs,cms,metric_check))
             goagain=False
-
         except ValueError:
-            print("")
+            print("Decimals only for kgs and cms.  Whole numbers only for stone, pounds, feet, inches")
         except ZeroDivisionError:
-            print("")
-        except:
-            print("")
-        finally:
-            print("")
+            print("Cannot divide by zero")
+        else:
+            print("Works")
+            goagain=False
 
     print("Thank you!!")
-'''

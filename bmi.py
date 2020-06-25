@@ -1,3 +1,8 @@
+#Name: Naoimi Gillis
+#Email: gillisnaoimi5@gmail.com
+#Phone: 0857227932
+#Attempt 2
+
 from sys import argv
 import csv
 import pandas as pd
@@ -12,6 +17,7 @@ class Bmi:
         self._inches=1
         self._kgs=1
         self._cms=1
+        self.bmi=0
 
     def set_metric_inputs(self,kgs,cms):
         self.set_kgs(kgs)
@@ -93,3 +99,38 @@ class Bmi:
         bmi_imperial=""
         bmi_imperial = (((self._stone*14)+self._pounds)*703) / (((self._feet*12)+self._inches)**2)
         print(bmi_imperial)
+
+    # Need a reference table here to add the bmi status into dataframe
+    bmi=0
+    def bmi_status(bmi):
+        if bmi < 18.5:
+            return "Underweight BMI"
+        elif 18.501 <= bmi < 24.5:
+            return "Healthy weight"
+        elif 24.501 <= bmi < 29.9:
+            return "Overweight"
+        elif 29.901 <= bmi < 250:
+            return "Obese"
+        else:
+            raise ValueError('Unsupported BMI: {}'.format(bmi))
+
+    # Depending on units open an if statement, metric down one rabbit hole
+    name=""
+    def BMI(name, units, weight, height):
+        name = input("Please type your name: ")
+        units = input("Please type units - METRIC or IMPERIAL? ").upper()
+        weight = float(input("weight: "))
+        height = float(input("height: "))
+
+        if units == "METRIC":
+            bmi = weight / (height * height)
+            return bmi
+
+        elif units == "IMPERIAL":
+            bmi = (weight * 703) / (height * height)
+            return bmi
+        else:
+            print("Did you spell it correctly?")
+
+    bmi_status(bmi)
+    print("Hello %s, your BMI is %.2f" % (name, bmi))

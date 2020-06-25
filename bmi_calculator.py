@@ -1,3 +1,7 @@
+#Name: Naoimi Gillis
+#Email: gillisnaoimi5@gmail.com
+#Phone: 0857227932
+#Attempt 2
 from bmi import Bmi
 
 bmi = Bmi()

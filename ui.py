@@ -1,8 +1,13 @@
+ #Name: Naoimi Gillis
+#Email: gillisnaoimi5@gmail.com
+#Phone: 0857227932
+
 import tkinter as tk
 from tkinter import ttk
 import locale
 
 from bmi_prop import BmiProperty
+
 
 class BmiInterfaces(ttk.Frame):
     def __init__(self, parent):
@@ -13,6 +18,7 @@ class BmiInterfaces(ttk.Frame):
 
         # Add the Exit button
         ttk.Button(parent, text="Exit", command=parent.destroy).grid(row=1, column=1, sticky=tk.E, padx=15, pady=10)
+
 
 class BmiInterface(ttk.Frame):
     def __init__(self, parent):
@@ -58,8 +64,8 @@ class BmiInterface(ttk.Frame):
         ttk.Label(self, text="CM").grid(column=4, row=1, sticky=tk.E)
         ttk.Entry(self, width=25, textVariable=self.cms).grid(column=4, row=0)
 
-        ttk.Label(self,text="BMI Metric:").grid(column=1,row=2,sticky=tk.E)
-        ttk.Entry(self,width=25,textVariable=self.bmi_metric,state="readonly").grid(column=1,row=0)
+        ttk.Label(self, text="BMI Metric:").grid(column=1, row=2, sticky=tk.E)
+        ttk.Entry(self, width=25, textVariable=self.bmi_metric, state="readonly").grid(column=1, row=0)
 
         self.makeButtons()
 
@@ -86,10 +92,10 @@ class BmiInterface(ttk.Frame):
         self.bmi_imperial.set(self.bmi_props.imperial_bmi())
 
     def clear(self):
-        #self.stone.set("")
-        #self.pounds.set("")
-        #self.feet.set("")
-        #self.inches.set("")
+        self.stone.set("")
+        self.pounds.set("")
+        self.feet.set("")
+        self.inches.set("")
         self.kgs.set("")
         self.cms.set("")
         self.bmi_metric.set("")
@@ -98,6 +104,8 @@ class BmiInterface(ttk.Frame):
 
 if __name__ == " main ":
     root = tk.Tk()
+    #root.geometry("400x400")
+    #root.resizable(width=False,height=False)
     root.title("BMI Calculator")
     BmiInterfaces(root)
     root.mainloop()

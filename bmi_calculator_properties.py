@@ -1,3 +1,8 @@
+#Name: Naoimi Gillis
+#Email: gillisnaoimi5@gmail.com
+#Phone: 0857227932
+#Attempt 1
+
 from bmi_prop import BmiProperty
 
 bmi=BmiProperty()
@@ -10,5 +15,3 @@ bmi.metric_bmi()
 bmi.imperial_bmi()
 
 bmi.metric_bmi()
-
-print(f"Kgs:{bmi.kgs()} Cms:{bmi.cms()}")
