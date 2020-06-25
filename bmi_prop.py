@@ -5,14 +5,14 @@ class BmiProperty:
         self.set_metric_inputs(kgs, cms)
 
     def set_metric_inputs(self,kgs,cms):
-        self.kgs=kgs
-        self.cms=cms
+        self.kgs = kgs
+        self.cms = cms
 
     def set_imp_inputs(self,stone,pounds,feet,inches):
-        self.stone=stone
-        self.pounds=pounds
-        self.feet=feet
-        self.inches=inches
+        self.stone = stone
+        self.pounds = pounds
+        self.feet = feet
+        self.inches = inches
 
     @property
     def kgs(self):
@@ -89,9 +89,35 @@ class BmiProperty:
     def metric_bmi(self):
         bmi_metric=""
         bmi_metric = self.kgs/(self.cms * self.cms)*10000
-        print(bmi_metric)
+        return bmi_metric
 
     def imperial_bmi(self):
         bmi_imperial=""
         bmi_imperial = (((self.stone*14)+self.pounds)*703) / (((self.feet*12)+self.inches)**2)
-        print(bmi_imperial)
+        return bmi_imperial
+'''
+    goagain=True
+
+    while(goagain==True):
+        try:
+            stone = int(input("Enter your weight in stone: "))
+            pounds = int(input("Enter your pounds of weight(no more than 14 pounds in a stone): "))
+            feet = int(input("Enter your height in feet: "))
+            inches = int(input("Enter your inches of height(no more than 12 inches in a foot): "))
+            kgs = float(input("Enter your weight in kgs: "))
+            cms = float(input("Enter your height in cms: "))
+            metric_check=kgs/cms
+            print("%f/%f=%f"%(kgs,cms,metric_check))
+            goagain=False
+
+        except ValueError:
+            print("")
+        except ZeroDivisionError:
+            print("")
+        except:
+            print("")
+        finally:
+            print("")
+
+    print("Thank you!!")
+'''
