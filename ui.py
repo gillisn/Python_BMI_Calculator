@@ -102,7 +102,7 @@ class BmiInterface(ttk.Frame):
         self.bmi_imperial.set("")
 
 
-if __name__ == " main ":
+if __name__ == "__main__ ":
     root = tk.Tk()
     #root.geometry("400x400")
     #root.resizable(width=False,height=False)

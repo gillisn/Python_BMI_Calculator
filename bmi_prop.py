@@ -1,7 +1,6 @@
 #Name: Naoimi Gillis
 #Email: gillisnaoimi5@gmail.com
 #Phone: 0857227932
-#Attempt 1
 
 from sys import argv
 import csv
@@ -9,7 +8,7 @@ import pandas as pd
 
 class BmiProperty:
 
-    def __init__(self,stone=0.1,pounds=0.1,feet=0.1,inches=0.1,kgs=0.1,cms=0.1):
+    def __init__(self,stone=0,pounds=0,feet=0,inches=0,kgs=89,cms=170):
         self.set_imp_inputs(stone,pounds,feet,inches)
         self.set_metric_inputs(kgs, cms)
 
@@ -106,6 +105,8 @@ class BmiProperty:
         return bmi
 
     # Need a reference table here to add the bmi status into dataframe
+    #This bit does not work unless I hard code values
+    '''bmi=0
     def bmi_status(bmi):
         if bmi < 18.5:
             return "Underweight BMI"
@@ -117,35 +118,18 @@ class BmiProperty:
             return "Obese"
         else:
             raise ValueError('Unsupported BMI: {}'.format(bmi))
+    '''
 
-    # Save results to a dataframe
+    #Save results to a dataframe
+    #This bit works when I hard code
+    '''
     df = pd.DataFrame(columns=['Stone','Pounds','Feet','Inches','Kgs','Cms','BMI','BMI Status'])
     df1 = pd.DataFrame(data=[[stone,pounds,feet,inches,kgs,cms,bmi,bmi_status(bmi)]],
                        columns=['Stone','Pounds','Feet','Inches','Kgs','Cms',"BMI","BMI Status"])
     df = pd.concat([df, df1], axis=0)
     print(df)
+    '''
 
     # Save results to a csv
-    df.to_csv('filename.csv', sep='\t')
-
-    goagain=True
-    while(goagain==True):
-        try:
-            #stone = int(input("Enter your weight in stone: "))
-            #pounds = int(input("Enter your pounds of weight(no more than 14 pounds in a stone): "))
-            #feet = int(input("Enter your height in feet: "))
-            #inches = int(input("Enter your inches of height(no more than 12 inches in a foot): "))
-            kgs = float(input("Enter your weight in kgs: "))
-            cms = float(input("Enter your height in cms: "))
-            metric_check=kgs/cms
-            print("%f/%f=%f"%(kgs,cms,metric_check))
-            goagain=False
-        except ValueError:
-            print("Decimals only for kgs and cms.  Whole numbers only for stone, pounds, feet, inches")
-        except ZeroDivisionError:
-            print("Cannot divide by zero")
-        else:
-            print("Works")
-            goagain=False
-
-    print("Thank you!!")
+    #This bit works when I hard code it
+    '''df.to_csv('filename.csv', sep='\t')'''

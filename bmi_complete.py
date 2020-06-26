@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+#Name: Naoimi Gillis
+#Email: gillisnaoimi5@gmail.com
+#Phone: 0857227932
 
 import tkinter as tk
 from tkinter import ttk
@@ -6,21 +8,20 @@ import locale
 
 from bmi_prop import BmiProperty
 
-
-class FutureValueFrames(ttk.Frame):
+class BmiInterfaces(ttk.Frame):
     def __init__(self, parent):
         ttk.Frame.__init__(self, parent)
 
         # Add the FutureValueFrames
-        FutureValueFrame(parent).grid(row=0, column=0)
-        # FutureValueFrame(parent).grid(row=1, column=5)
-        # FutureValueFrame(parent).grid(row=1, column=6)
+        BmiFrame(parent).grid(row=0, column=0)
+        # BmiFrame(parent).grid(row=1, column=5)
+        # BmiFrame(parent).grid(row=1, column=6)
 
         # Add the Exit button
         ttk.Button(parent, text="Exit", command=parent.destroy).grid(row=1, column=1, sticky=tk.E, padx=15, pady=10)
 
 
-class FutureValueFrame(ttk.Frame):
+class BmiFrame(ttk.Frame):
     def __init__(self, parent):
         ttk.Frame.__init__(self, parent, padding="10 10 10 10")
         self.parent = parent
@@ -68,6 +69,9 @@ class FutureValueFrame(ttk.Frame):
         ttk.Label(self, text="or CM:").grid(column=4, row=3, sticky=tk.E)
         ttk.Entry(self, width=25, textvariable=self.cms).grid(column=5, row=3)
 
+        ttk.Label(self, text="BMI Results").grid(column=0, row=4, sticky=tk.E)
+        ttk.Entry(self, width=25, textvariable=self.bmi_metric,state="readonly").grid(column=1, row=4)
+
         self.makeButtons()
 
         for child in self.winfo_children():
@@ -79,30 +83,14 @@ class FutureValueFrame(ttk.Frame):
         buttonFrame = ttk.Frame(self)
 
         # Add the button frame to the bottom row of the main grid
-        buttonFrame.grid(column=2, row=4, columnspan=1, sticky=tk.E)
+        buttonFrame.grid(column=1, row=4, sticky=tk.E)
 
         # Add two buttons to the button frame
-
-        ttk.Button(buttonFrame, text="Calculate Your BMI Now, Motherfucker!!") \
-            .grid(column=1, row=0)
-
-        ttk.Label(self, text="BMI Results:").grid(column=0, row=5, sticky=tk.E)
-        ttk.Entry(self, width=25, textvariable=self.calculate,state="readonly").grid(column=1, row=5)
-
-        ttk.Button(buttonFrame, text="Clear", command=self.clear).grid(column=2, row=0, padx=5)
+        ttk.Button(self, width=25, text="Calculate your BMI", command=self.calculate).grid(column=1, row=5)
+        ttk.Button(buttonFrame, text="Clear", command=self.clear).grid(column=4, row=5)
 
     def calculate(self):
-        self.bmi_props._stone = int(self.stone.get())
-        self.bmi_props._pounds = int(self.pounds.get())
-        self.bmi_props._feet = int(self.feet.get())
-        self.bmi_props._inches = int(self.inches.get())
-
-        self.bmi_props._kgs = float(self.kgs.get())
-        self.bmi_props._cms = float(self.cms.get())
-
-        # self.bmi_metric = self.bmi_props.metric_bmi()
         self.bmi_metric.set(self.bmi_props.metric_bmi())
-        #self.bmi_imperial.set(self.bmi_props.imperial_bmi())
 
     def clear(self):
         self.stone.set("")
@@ -114,9 +102,31 @@ class FutureValueFrame(ttk.Frame):
         self.bmi_metric.set("")
         self.bmi_imperial.set("")
 
+#Add in exception handling for the inputs
+''' goagain=True
+    while(goagain==True):
+        try:
+            stone = int(input("Enter your weight in stone: "))
+            pounds = int(input("Enter your pounds of weight(no more than 14 pounds in a stone): "))
+            feet = int(input("Enter your height in feet: "))
+            inches = int(input("Enter your inches of height(no more than 12 inches in a foot): "))
+            kgs = float(input("Enter your weight in kgs: "))
+            cms = float(input("Enter your height in cms: "))
+            metric_check=kgs/cms
+            goagain=False
+        except ValueError:
+            print("Decimals only for kgs and cms.  Whole numbers only for stone, pounds, feet, inches")
+        except ZeroDivisionError:
+            print("Cannot divide by zero")
+        else:
+            print("Works")
+            goagain=False
+
+    print("It works")
+'''
 
 if __name__ == "__main__":
     root = tk.Tk()
-    root.title("Future Value Calculator")
-    FutureValueFrames(root)
+    root.title("BMI Calculator")
+    BmiInterfaces(root)
     root.mainloop()
